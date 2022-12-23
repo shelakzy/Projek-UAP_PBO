@@ -1,0 +1,25 @@
+var m;
+var level, player;
+
+function setup(){
+    m = new Map(600,600);
+    m.init();
+}
+
+function draw(){
+    background('#fae')
+}
+
+class Map{
+    constructor(width, height){
+        this.width = width;
+        this.height = height;
+    }
+    init(){
+        createCanvas(this.width,this.height);
+    }
+    move(){
+        
+    }
+}
+
