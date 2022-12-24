@@ -64,4 +64,21 @@ function draw(){
     }
 }
 
+function mousePressed(){
+	if(layar == 0){//layar awal > jika diklik akan berubah jadi 1
+        layar = 1
+        level.setLevel(1);
+        mapp.init();
+    }else if(layar == 2){ // jika diklik akan berubah jadi layar 0
+        layar = 0 // Mereset semua menjadi awal 0
+        score = 0;
+        chara.life = 15;
+        level.setLevel(1);
+    }
+}
 
+function keyPressed() {
+    if (keyCode === 32) { // fungsi menekan Spasi Untuk menembak peluru
+      chara.attack();
+    } 
+}
