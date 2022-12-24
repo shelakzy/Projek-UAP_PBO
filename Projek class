@@ -147,8 +147,8 @@ class Monster extends Entity{ // class Monster extend Entity
                 this.color = (random(0,255),random(0,255),random(0,255)); // merandom warna monster
                 chara.life = 15; // Mengembalikan nyawa hero ke 15
                 chara.increaseScore(); // meningkatkan Score
-                this.width -= 3; // Mengurangi ukuran hero
-                this.height -= 3; // mengurangi ukuran hero
+                this.width -= 3; // Mengurangi ukuran monster
+                this.height -= 3; // mengurangi ukuran monster
 
                 if(score % 5 == 0){ // Jika score habis dibagi 5 maka level akan naik
                     level.levelIncreaseLevel();
@@ -162,7 +162,6 @@ class Monster extends Entity{ // class Monster extend Entity
         }
         fill(this.color); // Mewarnai Monster
         ellipse(this.x, this.y, this.width, this.height); // Memanggil Monster
-        this.y -= 1;
     }
 }
 
