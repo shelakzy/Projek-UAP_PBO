@@ -1,25 +1,67 @@
-var m;
-var level, player;
+var chara, mon, mapp, level; // membuat variabel baru
+let layar = 0;
+let score = 0;
+let counter = setInterval(timer, 1000) // Membuat fungsi Timer menggunakan setInteval
 
 function setup(){
-    m = new Map(600,600);
-    m.init();
+    chara = new Hero(300,500, 30,30); // Menginisialisasi class Hero
+    mon = new Monster(random(0,600), random(0, 300), 50,50); // Menginisialisasi class Monster
+    mapp = new Map(600,600); // Menginisialisasi class Map
+    level = new Level(1,0,100); // Menginisialisasi class Level
+
+    level.setLevel(1);
+    mapp.init(); // Memanggil fungsi init untuk membuat canvas
 }
 
 function draw(){
-    background('#fae')
+    if(layar === 0){ // Jika Layar 1
+        background(220);
+        fill(0);
+        text('Click to Start!', (width/2) - 70, height/2 );
+        chara.life = 15; // Mengatur Nyawa Awal Hero
+
+    }else if(layar === 1){ // Jika Layar 2
+        background(220);
+        chara.show(); // Memanggil Hero
+
+        for(let plr of chara.bullet){ // Looping untuk Peluru
+            plr.show();
+        }
+
+        mon.show(); // Memanggil fungsi Monster
+        fill('#000');
+        text(`Score: ${score}`, 500, 40); // Mendapatkan Jumlah Score
+        text(`Level: ${level.getCurrentLevel()}`, 500, 60); // Mendapatkan Jumlah Level
+
+        if(chara.life > 0){ // Set Timer nyawa Tersisa
+            fill('#000')
+            text(chara.life + " seconds", 100, 40);
+        } else { // Jika Nyawa Habis, maka Game Over
+            layar = 2;
+            chara.life = 15;
+        }
+
+        if (keyIsDown(87)) { // 87 == W
+            chara.moveUp();
+        
+        }else if (keyIsDown(83)) { // 83 == s
+            chara.moveDown();
+        
+        }else if (keyIsDown(65)) { // 65 == A
+            chara.moveLeft();
+        
+        }else if (keyIsDown(68)) { // 68 == D
+            chara.moveRight();
+        }
+    }else{ // Jika Layar 2
+        background(220);
+        textSize(20);
+        text('Game Over', width/2 - 50, height/2);
+        textSize(16);
+        text(`Your Score: ${score}`, width/2 - 50, height/2 + 20);
+        text(`Your Level: ${level.getCurrentLevel()}`, width/2 - 50, height/2 + 40);
+        text(`Click To Continue!`, width/2 - 50, height/2 + 60);
+    }
 }
 
-class Map{
-    constructor(width, height){
-        this.width = width;
-        this.height = height;
-    }
-    init(){
-        createCanvas(this.width,this.height);
-    }
-    move(){
-        
-    }
-}
 
