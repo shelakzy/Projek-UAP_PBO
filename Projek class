@@ -122,3 +122,13 @@ attack(){ // fungsi attack untuk menembak Peluru
           this.y += 3;
         }
     }
+    
+    moveUp(){ // Bergerak Kekanan. y dikurang
+        if(this.y > 0){
+          this.y -= 3;
+        }
+    }
+}
+
+
+
