@@ -130,6 +130,14 @@ attack(){ // fungsi attack untuk menembak Peluru
     }
 }
 
+class Hero extends Entity{ // class Hero extend Entity
+    constructor(x, y, width, height){
+        super(x, y, width, height);
+        this.life = 15; // Nyawa Hero awal 15
+    }
+
+
+
 class Monster extends Entity{ // class Monster extend Entity
     constructor(x, y, width, height){
         super(x, y, width, height);
