@@ -82,3 +82,20 @@ function keyPressed() {
       chara.attack();
     } 
 }
+
+function timer(){ // Fungsi Timer
+    if (chara.life <= 0) {
+       clearInterval(counter);     
+    } else {
+       chara.life = chara.life - 1;
+    }
+}
+
+class Entity{ // CLass Entity
+    constructor(x, y, width, height){
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.bullet = [];
+    }
