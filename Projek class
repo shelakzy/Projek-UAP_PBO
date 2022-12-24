@@ -99,3 +99,26 @@ class Entity{ // CLass Entity
         this.height = height;
         this.bullet = [];
     }
+
+attack(){ // fungsi attack untuk menembak Peluru
+        let blt = new Bullet(chara.x, chara.y)
+        this.bullet.push(blt);
+    }
+
+    moveRight(){ // Bergerak Kekanan. x ditambah
+        if(this.x < 600){    
+          this.x += 3;
+        }
+    }
+    
+    moveLeft(){ // Bergerak Kekanan. x dikurang
+        if(this.x > 0){
+          this.x -= 3;
+        }
+    }
+    
+    moveDown(){ // Bergerak Kekanan. y ditambah
+        if(this.y < 600){
+          this.y += 3;
+        }
+    }
