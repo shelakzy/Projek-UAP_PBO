@@ -130,5 +130,85 @@ attack(){ // fungsi attack untuk menembak Peluru
     }
 }
 
+class Monster extends Entity{ // class Monster extend Entity
+    constructor(x, y, width, height){
+        super(x, y, width, height);
+        this.color = (random(0,255),random(0,255),random(0,255)); // random warna monster
+        this.life = 0;
+        this.effect = 0;
+    }
 
+    show(){ // Memanggil Bentuk Monster
+        for(var bllt of chara.bullet){
+            var distToBall = dist(this.x, this.y, bllt.x, bllt.y); // Perintah jika posisi x dan y peluru dan posisi monster kurang dari 20
+            if(distToBall < 20){ 
+                this.x = random(width); // me random ulang posisi x monster
+                this.y= random(0, 300); // me random ulang posisi y monster
+                this.color = (random(0,255),random(0,255),random(0,255)); // merandom warna monster
+                chara.life = 15; // Mengembalikan nyawa hero ke 15
+                chara.increaseScore(); // meningkatkan Score
+                this.width -= 3; // Mengurangi ukuran hero
+                this.height -= 3; // mengurangi ukuran hero
+
+                if(score % 5 == 0){ // Jika score habis dibagi 5 maka level akan naik
+                    level.levelIncreaseLevel();
+                }
+
+                if(this.width <= 5 && this.height <= 5){ // jika ukuran monster kurang dari 5 maka kembali ke bentuk awal yaitu 50
+                    this.width = 50;
+                    this.height = 50;
+                }
+            }
+        }
+        fill(this.color); // Mewarnai Monster
+        ellipse(this.x, this.y, this.width, this.height); // Memanggil Monster
+        this.y -= 1;
+    }
+}
+
+class Map{ // class Map
+    constructor(width, height){
+        this.width = width;
+        this.height = height;
+    }
+
+    init(){ // Fungsi Inisialisasi untuk memanggil Bentuk Canvas
+        createCanvas(this.width, this.height)
+    }
+}
+
+class Level{ // class Level
+    constructor(currentLevel, latestLevel, maxLevel){
+        this.currentLevel = currentLevel;
+        this.latestLevel = latestLevel;
+        this.maxLevel = maxLevel;
+    }
+
+    setLevel(level){ // fungsi mengatur level
+        this.currentLevel = level; // currentlevel == 1
+    }
+
+    getCurrentLevel(){ // fungsi mendapatkan level
+        return this.currentLevel;
+    }
+
+    levelIncreaseLevel(){ // fungsi meningkatkan level
+        this.currentLevel++;
+    }
+
+}
+
+class Bullet{ // class Peluru
+    constructor(x, y){
+        this.x = x;
+        this.y = y;
+    }
+
+    show(){ // Memanggil bentuk peluru
+        fill('#000');
+        ellipse(this.x, this.y, 5,  5);
+        this.y -= 5;
+        noFill();
+    }
+}
 
